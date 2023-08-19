@@ -27,13 +27,13 @@ const Product = ({ product }: any) => {
               Rs. {product.price}
             </span>
 
-            {/* <span className="text-sm text-dark-1 line-through">$699</span> */}
+            {/* <span className="text-sm text-dark-1 line-through">Rs.699</span> */}
           </p>
         </div>
 
         <div className="mx-auto my-5">
           <div className="text-md md:text-xl">
-            {product.description.slice(0, 50)}
+            {product.description.slice(0, 20)}...
           </div>
         </div>
 

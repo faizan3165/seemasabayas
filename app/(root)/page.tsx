@@ -16,7 +16,7 @@ const Home = () => {
           "https://seemas-admin.vercel.app/api/products",
           { cache: "no-store" }
         );
-        // const res = await fetch("/api/products");
+        
         const data = await res.json();
         setProducts(data.products);
       } catch (error) {

@@ -1,8 +1,10 @@
 "use client";
 
 import { Carousel } from "react-responsive-carousel";
-
 import { BiArrowBack } from "react-icons/bi";
+import Image from "next/image";
+
+import { bannerImgs } from "@/constants/bannerImgs";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
@@ -35,35 +37,19 @@ const Hero = () => {
           </div>
         )}
       >
-        <div>
-          <img
-            src="/assets/slide-1.png"
-            alt="p1"
-            className={`hero-banner_img`}
-          />
+        {bannerImgs.map((img: any) => (
+          <div key={img.id}>
+            <Image
+              src={img.url}
+              alt={img.id}
+              width={500}
+              height={500}
+              className={`hero-banner_img`}
+            />
 
-          <div className={` hero-banner_text`}>Shop Now</div>
-        </div>
-
-        <div>
-          <img
-            src="/assets/slide-2.png"
-            alt="p2"
-            className={`hero-banner_img`}
-          />
-
-          <div className={` hero-banner_text`}>Shop Now</div>
-        </div>
-
-        <div>
-          <img
-            src="/assets/slide-3.png"
-            alt="p3"
-            className={`hero-banner_img`}
-          />
-
-          <div className={` hero-banner_text`}>Shop Now</div>
-        </div>
+            <div className={` hero-banner_text`}>Shop Now</div>
+          </div>
+        ))}
       </Carousel>
     </div>
   );
