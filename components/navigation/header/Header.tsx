@@ -52,16 +52,16 @@ const Header = () => {
           <Image
             src={"/logos/logo.png"}
             alt="logo"
-            width={50}
-            height={50}
+            width={200}
+            height={200}
             className="md:w-[60px] rounded-full max-sm:hidden"
           />
 
           <Image
-            src={"/logos/logo.svg"}
+            src={"/logos/logo.png"}
             alt="logo"
-            width={500}
-            height={500}
+            width={100}
+            height={100}
             priority
             className="md:w-[60px] rounded-full md:hidden block"
           />
@@ -86,7 +86,7 @@ const Header = () => {
         <div className={`flex items-center gap-2 text-dark-1`}>
           {/* Wishlist Icon Start */}
           <div className={`icon_container`}>
-            <div>
+            <Link href={"//wishlist"}>
               <IoMdHeartEmpty className={`text-[19px] md:text-[24px]`} />
 
               <div
@@ -94,13 +94,13 @@ const Header = () => {
               >
                 15
               </div>
-            </div>
+            </Link>
           </div>
           {/* Wishlist Icon End */}
 
           {/* Cart Icon Start */}
           <div className={`icon_container`}>
-            <div>
+            <Link href={"/cart"}>
               <BsCart className={`text-[15px] md:text-[20px]`} />
 
               <div
@@ -108,7 +108,7 @@ const Header = () => {
               >
                 5
               </div>
-            </div>
+            </Link>
           </div>
           {/* Cart Icon End */}
 

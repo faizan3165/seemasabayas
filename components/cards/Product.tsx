@@ -1,6 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 
+import { IoMdHeartEmpty } from "react-icons/io";
+
+import ProductDetailsLink from "../navigation/link/ProductDetailsLink";
+
 const Product = ({ product }: any) => {
   return (
     <div className="group border-light-1 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-lg border bg-light-1 shadow-md">
@@ -12,10 +16,17 @@ const Product = ({ product }: any) => {
           width={500}
           height={500}
         />
+        <span className="absolute top-0 left-0 m-2 rounded-full bg-dark-1 px-2 text-center text-sm font-medium text-light-1">
+          39% OFF
+        </span>
 
-        {/* <span className="absolute top-0 left-0 m-2 rounded-full bg-light-1 px-2 text-center text-sm font-medium text-dark-2">
-            39% OFF
-          </span> */}
+        <div
+          className={` top-[1px] right-[2px] w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer absolute`}
+        >
+          <div>
+            <IoMdHeartEmpty className={`text-[24px]`} />
+          </div>
+        </div>
       </div>
 
       <div className="mt-4 px-5 pb-5">
@@ -27,7 +38,9 @@ const Product = ({ product }: any) => {
               Rs. {product.price}
             </span>
 
-            {/* <span className="text-sm text-dark-1 line-through">Rs.699</span> */}
+            <span className="text-sm mx-4 text-dark-1 line-through">
+              Rs.699
+            </span>
           </p>
         </div>
 
@@ -37,12 +50,7 @@ const Product = ({ product }: any) => {
           </div>
         </div>
 
-        <Link
-          href={`/products/${product._id}`}
-          className="hover:border-white/40 flex items-center justify-center rounded-md border border-transparent bg-blue px-5 py-2.5 text-center text-sm font-medium text-dark-1 focus:outline-none focus:ring-4 focus:ring-blue-300"
-        >
-          Details
-        </Link>
+        <ProductDetailsLink productId={product.name} />
       </div>
     </div>
   );

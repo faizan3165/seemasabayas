@@ -103,5 +103,4 @@ export const bannerImgs = [
     id: 21,
     url: "/banner/21-min.jpg",
   },
-
 ];

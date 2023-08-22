@@ -29,12 +29,12 @@ export const subMenuItems = [
   {
     id: 1,
     name: "Abayas",
-    href: "/abayas",
+    href: "/category/abayas",
   },
 
   {
     id: 2,
     name: "Modest Dresses",
-    href: "/modest-dresses",
+    href: "/category/modest-dresses",
   },
 ];

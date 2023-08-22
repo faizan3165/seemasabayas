@@ -11,7 +11,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 const Hero = () => {
   return (
     <div
-      className={`relative text-white text-[20px] w-full max-w-[1360px] mx-auto`}
+      className={`relative text-white text-[20px] w-full max-w-[1360px] mx-auto `}
     >
       <Carousel
         autoPlay={true}
@@ -44,10 +44,10 @@ const Hero = () => {
               alt={img.id}
               width={500}
               height={500}
-              className={`hero-banner_img`}
+              className={`rounded-lg object-contain`}
             />
 
-            <div className={` hero-banner_text`}>Shop Now</div>
+            <div className={`hero-banner_text`}>Shop Now</div>
           </div>
         ))}
       </Carousel>
