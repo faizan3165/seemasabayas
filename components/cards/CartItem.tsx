@@ -24,7 +24,7 @@ const CartItem = ({ item }: any) => {
     },
     {
       id: 4,
-      label: "extraLarge",
+      label: "xl",
       qty: item.product.sizes.extraLarge,
     },
   ];
@@ -56,11 +56,20 @@ const CartItem = ({ item }: any) => {
 
       <div className="w-full flex flex-col">
         <div className="flex flex-col md:flex-row justify-between">
-          {/* Title Start */}
-          <div className="text-lg md:text-2xl font-semibold text-black/[0.8]">
-            {item.product.name}
+          <div className="flex flex-row justify-between">
+            {/* Title Start */}
+            <div className="text-lg md:text-2xl font-semibold text-black/[0.8]">
+              {item.product.name}
+            </div>
+            {/* Title End */}
+
+            {/* Delete Icon Start */}
+            <RiDeleteBin6Line
+              onClick={() => dispatch(removeFromCart({ id: item.product._id }))}
+              className="md:hidden cursor-pointer text-red-700/[0.5] hover:text-red-900 text-[16px] md:text-[20px]"
+            />
+            {/* Delete Icon End */}
           </div>
-          {/* Title End */}
 
           {/* Subtitle Start */}
           <div className="text-sm md:text-md font-medium text-black/[0.5] block md:hidden">
@@ -132,7 +141,7 @@ const CartItem = ({ item }: any) => {
           {/* Delete Icon Start */}
           <RiDeleteBin6Line
             onClick={() => dispatch(removeFromCart({ id: item.product._id }))}
-            className="cursor-pointer text-red-700/[0.5] hover:text-red-900 text-[16px] md:text-[20px]"
+            className="max-sm:hidden cursor-pointer text-red-700/[0.5] hover:text-red-900 text-[16px] md:text-[20px]"
           />
           {/* Delete Icon End */}
         </div>
