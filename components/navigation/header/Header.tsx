@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { useSelector } from "react-redux";
 
 import { IoMdHeartEmpty } from "react-icons/io";
 import { BsCart } from "react-icons/bs";
@@ -19,6 +20,8 @@ const Header = () => {
   const [showCatMenu, setShowCatMenu] = useState(false);
   const [showHeader, setShowHeader] = useState("translate-y-0");
   const [lastScrollY, setLastScrollY] = useState(0);
+
+  const { cartItems } = useSelector((state: any) => state.cart);
 
   const showNavbar = () => {
     if (window.scrollY > 200) {
@@ -102,12 +105,13 @@ const Header = () => {
           <div className={`icon_container`}>
             <Link href={"/cart"}>
               <BsCart className={`text-[15px] md:text-[20px]`} />
-
-              <div
-                className={`h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-light-1 text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px]`}
-              >
-                5
-              </div>
+              {cartItems.length > 0 && (
+                <div
+                  className={`h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-light-1 text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px]`}
+                >
+                  {cartItems.length}
+                </div>
+              )}
             </Link>
           </div>
           {/* Cart Icon End */}

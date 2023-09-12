@@ -35,7 +35,7 @@ const Product = ({ product }: any) => {
         <div className="mt-2 mb-5 flex items-center justify-between">
           <p>
             <span className="text-3xl font-bold text-dark-1">
-              Rs. {product.price}
+              Rs. {product.price.toLocaleString()}
             </span>
 
             <span className="text-sm mx-4 text-dark-1 line-through">

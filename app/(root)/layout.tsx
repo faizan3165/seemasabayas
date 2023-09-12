@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import Header from "@/components/navigation/header/Header";
 import Footer from "@/components/footer/Footer";
 
+import CartProvider from "@/provider/CartProvider";
+
 import "../globals.css";
 
 export const metadata: Metadata = {
@@ -23,11 +25,13 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body suppressHydrationWarning={true}>
-          <Header />
+          <CartProvider>
+            <Header />
 
-          <div>{children}</div>
+            <div>{children}</div>
 
-          <Footer />
+            <Footer />
+          </CartProvider>
         </body>
       </html>
     </ClerkProvider>
