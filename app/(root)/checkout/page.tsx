@@ -1,9 +1,26 @@
 "use client";
 
-import { useSelector } from "react-redux";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
+
+import { emptyCart } from "@/store/cartSlice";
+
+import { CreateOrder } from "@/lib/actions/order.actions";
 
 const Checkout = () => {
+  // State variables for input fields
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [streetAddress, setStreetAddress] = useState("");
+  const [selectedState, setSelectedState] = useState("");
+  const [zipcode, setZipcode] = useState("");
+
+  const router = useRouter();
+  const dispatch = useDispatch();
+
+  const { cartItems } = useSelector((state: any) => state.cart);
+
   const pakistaniStates = [
     "Punjab",
     "Sindh",
@@ -13,14 +30,40 @@ const Checkout = () => {
     "Gilgit-Baltistan",
   ];
 
-  const { cartItems } = useSelector((state: any) => state.cart);
-
   const subTotal = useMemo(() => {
     return cartItems.reduce(
       (total: any, value: any) => (total += value.itemPrice),
       0
     );
   }, [cartItems]);
+
+  const handlePlaceOrder = async () => {
+    // Gather order information from state variables
+    const orderData = {
+      email,
+      name,
+      shippingAddress: {
+        street: streetAddress,
+        state: selectedState,
+        zipcode,
+      },
+      status: "pending",
+    };
+
+    // Call the order creation function with orderData and cartItems
+    try {
+      alert("Order placed successfully");
+      router.push("/");
+      dispatch(emptyCart());
+      await CreateOrder(orderData, cartItems);
+      // Handle success (e.g., show a confirmation message to the user)
+    } catch (error: any) {
+      // Handle error (e.g., show an error message to the user)
+      console.error("Error placing order:", error.message);
+    }
+  };
+
+  console.log(cartItems);
 
   return (
     <>
@@ -34,7 +77,10 @@ const Checkout = () => {
 
           <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
             {cartItems.map((item: any) => (
-              <div className="flex flex-col rounded-lg bg-white sm:flex-row">
+              <div
+                className="flex flex-col rounded-lg bg-white sm:flex-row"
+                key={item.product._id}
+              >
                 <img
                   className="m-2 h-24 w-28 rounded-md border object-cover object-center"
                   src={item.product.image}
@@ -77,6 +123,8 @@ const Checkout = () => {
                 name="email"
                 className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="your.email@gmail.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
 
               <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
@@ -86,11 +134,11 @@ const Checkout = () => {
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  stroke-width="2"
+                  strokeWidth="2"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
                   />
                 </svg>
@@ -111,6 +159,8 @@ const Checkout = () => {
                 name="name"
                 className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="eg. John Doe"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
 
               <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
@@ -147,6 +197,8 @@ const Checkout = () => {
                   name="shipping-address"
                   className="w-full rounded-md border border-gray-200 px-4 py-3 pl-20 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                   placeholder="Street Address"
+                  value={streetAddress}
+                  onChange={(e) => setStreetAddress(e.target.value)}
                 />
 
                 <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
@@ -161,6 +213,8 @@ const Checkout = () => {
               <select
                 name="billing-state"
                 className="w-full rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                value={selectedState}
+                onChange={(e) => setSelectedState(e.target.value)}
               >
                 <option value="">Select State</option>
                 {pakistaniStates.map((state, index) => (
@@ -175,6 +229,8 @@ const Checkout = () => {
                 name="shipping-zip"
                 className="flex-shrink-0 rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none sm:w-1/6 focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="ZIP"
+                value={zipcode}
+                onChange={(e) => setZipcode(e.target.value)}
               />
             </div>
 
@@ -202,7 +258,10 @@ const Checkout = () => {
             </div>
           </div>
 
-          <button className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
+          <button
+            className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white"
+            onClick={handlePlaceOrder}
+          >
             Place Order
           </button>
         </div>
