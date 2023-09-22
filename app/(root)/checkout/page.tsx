@@ -3,10 +3,13 @@
 import React, { useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
 
 import { emptyCart } from "@/store/cartSlice";
 
 import { CreateOrder } from "@/lib/actions/order.actions";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const Checkout = () => {
   // State variables for input fields
@@ -37,6 +40,19 @@ const Checkout = () => {
     );
   }, [cartItems]);
 
+  const notify = () => {
+    toast.success("Added to Cart", {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
   const handlePlaceOrder = async () => {
     // Gather order information from state variables
     const orderData = {
@@ -50,23 +66,36 @@ const Checkout = () => {
       status: "pending",
     };
 
-    // Call the order creation function with orderData and cartItems
     try {
-      alert("Order placed successfully");
-      router.push("/");
-      dispatch(emptyCart());
-      await CreateOrder(orderData, cartItems);
-      // Handle success (e.g., show a confirmation message to the user)
+      notify();
+
+      setTimeout(async () => {
+        router.push("/");
+
+        dispatch(emptyCart());
+
+        await CreateOrder(orderData, cartItems);
+      }, 3000);
     } catch (error: any) {
-      // Handle error (e.g., show an error message to the user)
       console.error("Error placing order:", error.message);
     }
   };
 
-  console.log(cartItems);
-
   return (
     <>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
+
       <div className="flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32"></div>
 
       <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32 my-5">

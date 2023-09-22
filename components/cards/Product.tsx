@@ -16,17 +16,17 @@ const Product = ({ product }: any) => {
           width={500}
           height={500}
         />
-        <span className="absolute top-0 left-0 m-2 rounded-full bg-dark-1 px-2 text-center text-sm font-medium text-light-1">
+        {/* <span className="absolute top-0 left-0 m-2 rounded-full bg-dark-1 px-2 text-center text-sm font-medium text-light-1">
           39% OFF
-        </span>
+        </span> */}
 
-        <div
+        {/* <div
           className={` top-[1px] right-[2px] w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer absolute`}
         >
           <div>
             <IoMdHeartEmpty className={`text-[24px]`} />
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="mt-4 px-5 pb-5">
@@ -38,9 +38,9 @@ const Product = ({ product }: any) => {
               Rs. {product.price.toLocaleString()}
             </span>
 
-            <span className="text-sm mx-4 text-dark-1 line-through">
+            {/* <span className="text-sm mx-4 text-dark-1 line-through">
               Rs.699
-            </span>
+            </span> */}
           </p>
         </div>
 

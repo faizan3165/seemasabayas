@@ -87,7 +87,7 @@ const Header = () => {
 
         {/* Icons Container Start */}
         <div className={`flex items-center gap-2 text-dark-1`}>
-          {/* Wishlist Icon Start */}
+          {/* Wishlist Icon Start
           <div className={`icon_container`}>
             <Link href={"//wishlist"}>
               <IoMdHeartEmpty className={`text-[19px] md:text-[24px]`} />
@@ -99,7 +99,7 @@ const Header = () => {
               </div>
             </Link>
           </div>
-          {/* Wishlist Icon End */}
+          Wishlist Icon End */}
 
           {/* Cart Icon Start */}
           <div className={`icon_container`}>

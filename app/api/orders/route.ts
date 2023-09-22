@@ -7,7 +7,14 @@ export const fetchCache = "force-no-store";
 
 export async function FetchOrders() {
   try {
-    const orders = await Order.find(); // Fetch all orders from the database
+    await connectToDB();
+
+    const ordersQuery = Order.find().sort({
+      createdAt: "desc",
+    });
+
+    const orders = await ordersQuery.exec();
+
     return orders;
   } catch (error) {
     console.error("Error fetching orders:", error);
