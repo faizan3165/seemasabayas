@@ -34,6 +34,9 @@ export default function RootLayout({
             <Footer2 />
           </CartProvider>
         </body>
+
+        {navigator.userAgent.includes("Instagram") &&
+          (window.location.href = "https://seemasabayas.vercel.app/")}
       </html>
     </ClerkProvider>
   );
