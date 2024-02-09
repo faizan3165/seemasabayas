@@ -15,6 +15,18 @@
     @apply flex min-h-screen flex-1 flex-col items-center bg-light-1 px-6 pb-10 pt-28 max-md:pb-32 sm:px-10;
   }
 
+  .wrapper {
+    @apply max-w-7xl lg:mx-auto p-5 md:px-10 xl:px-0 w-full;
+  }
+
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+
+  .flex-between {
+    @apply flex justify-between items-center;
+  }
+
   /* Head Text */
   .head-text {
     @apply text-heading2-bold text-light-1;

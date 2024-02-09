@@ -7,6 +7,7 @@ import Footer from "@/components/footer/Footer";
 import CartProvider from "@/provider/CartProvider";
 
 import "../globals.css";
+import Footer2 from "@/components/footer/Footer2";
 
 export const metadata: Metadata = {
   title: "Seemasabayas",
@@ -30,7 +31,7 @@ export default function RootLayout({
 
             <div>{children}</div>
 
-            <Footer />
+            <Footer2 />
           </CartProvider>
         </body>
       </html>

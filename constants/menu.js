@@ -5,11 +5,11 @@ export const menuItems = [
     href: "/",
   },
 
-  {
-    id: 2,
-    name: "About",
-    href: "/about",
-  },
+  // {
+  //   id: 2,
+  //   name: "About",
+  //   href: "/about",
+  // },
 
   {
     id: 3,
@@ -18,11 +18,11 @@ export const menuItems = [
     subMenu: true,
   },
 
-  {
-    id: 4,
-    name: "Contact Us",
-    href: "/contact-us",
-  },
+  // {
+  //   id: 4,
+  //   name: "Contact Us",
+  //   href: "/contact-us",
+  // },
 ];
 
 export const subMenuItems = [
