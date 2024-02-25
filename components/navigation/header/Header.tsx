@@ -117,7 +117,7 @@ const Header = () => {
           {/* Cart Icon End */}
 
           {/* User Icon Start */}
-          <div
+          {/* <div
             className={`w-12 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative`}
           >
             <SignedIn>
@@ -134,7 +134,7 @@ const Header = () => {
                 />
               </Link>
             </SignedOut>
-          </div>
+          </div> */}
           {/* User Icon End */}
 
           {/* Mobile Menu Icon Start */}
