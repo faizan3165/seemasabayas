@@ -1,4 +1,3 @@
-import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 
 import Header from "@/components/navigation/header/Header";
@@ -23,18 +22,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body suppressHydrationWarning={true}>
-          <CartProvider>
-            <Header />
+    <html lang="en">
+      <body suppressHydrationWarning={true}>
+        <CartProvider>
+          <Header />
 
-            <div>{children}</div>
+          <div>{children}</div>
 
-            <Footer2 />
-          </CartProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+          <Footer2 />
+        </CartProvider>
+      </body>
+    </html>
   );
 }
